@@ -1,10 +1,12 @@
 workflows:
   ios-build:
-    name: iOS Build (unsigned)
+    name: iOS Build
     max_build_duration: 30
     instance_type: mac_mini_m2
     
     environment:
+      groups:
+        - apple-creds
       vars:
         APP_ID: com.harvesttag.app
         APP_NAME: Harvest Tag
@@ -38,14 +40,12 @@ workflows:
             -archivePath /tmp/xcarchive/App.xcarchive \
             -allowProvisioningUpdates \
             -allowProvisioningDeviceRegistration \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
+            DEVELOPMENT_TEAM="" \
             archive | xcpretty
     
     artifacts:
-      - capacitor/ios/App/build/*.log
       - /tmp/xcarchive/*.xcarchive
+      - /tmp/ipa/*.ipa
     
     publishing:
       email:
