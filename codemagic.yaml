@@ -1,6 +1,6 @@
 workflows:
   ios-build:
-    name: iOS Build
+    name: iOS Build (unsigned)
     max_build_duration: 30
     instance_type: mac_mini_m2
     
@@ -26,7 +26,6 @@ workflows:
       - name: Set app bundle identifier
         script: |
           cd capacitor/ios/App
-          # Update Info.plist bundle identifier
           /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $APP_ID" App/Info.plist
       
       - name: Build iOS app
@@ -37,19 +36,16 @@ workflows:
             -sdk iphoneos \
             -configuration Release \
             -archivePath /tmp/xcarchive/App.xcarchive \
-            archive \
-            | xcpretty
-      
-      - name: Export IPA
-        script: |
-          xcodebuild -exportArchive \
-            -archivePath /tmp/xcarchive/App.xcarchive \
-            -exportOptionsPlist exportOptions.plist \
-            -exportPath /tmp/ipa \
-            | xcpretty
+            -allowProvisioningUpdates \
+            -allowProvisioningDeviceRegistration \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            archive | xcpretty
     
     artifacts:
-      - /tmp/ipa/*.ipa
+      - capacitor/ios/App/build/*.log
+      - /tmp/xcarchive/*.xcarchive
     
     publishing:
       email:
