@@ -5,8 +5,6 @@ workflows:
     instance_type: mac_mini_m2
     
     environment:
-      groups:
-        - apple-creds
       vars:
         APP_ID: com.harvesttag.app
         APP_NAME: Harvest Tag
@@ -39,15 +37,17 @@ workflows:
             -configuration Release \
             -archivePath /tmp/xcarchive/App.xcarchive \
             -allowProvisioningUpdates \
-            -allowProvisioningDeviceRegistration \
             DEVELOPMENT_TEAM="" \
             archive | xcpretty
     
     artifacts:
       - /tmp/xcarchive/*.xcarchive
-      - /tmp/ipa/*.ipa
     
     publishing:
+      apple_app_store:
+        auth: user_and_password
+        username: brad.thurston@gmail.com
+        password: wekc-hwin-isih-syxe
       email:
         recipients:
           - brad.thurston@gmail.com
