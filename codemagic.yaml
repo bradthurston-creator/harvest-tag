@@ -1,0 +1,57 @@
+workflows:
+  ios-build:
+    name: iOS Build
+    max_build_duration: 30
+    instance_type: mac_mini_m2
+    
+    environment:
+      vars:
+        APP_ID: com.harvesttag.app
+        APP_NAME: Harvest Tag
+      node: latest
+      xcode: latest
+      cocoapods: default
+    
+    scripts:
+      - name: Install npm dependencies
+        script: |
+          cd capacitor
+          npm install
+      
+      - name: Sync Capacitor with iOS
+        script: |
+          cd capacitor
+          npx cap sync ios
+      
+      - name: Set app bundle identifier
+        script: |
+          cd capacitor/ios/App
+          # Update Info.plist bundle identifier
+          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $APP_ID" App/Info.plist
+      
+      - name: Build iOS app
+        script: |
+          cd capacitor/ios/App
+          xcodebuild -project App.xcodeproj \
+            -scheme App \
+            -sdk iphoneos \
+            -configuration Release \
+            -archivePath /tmp/xcarchive/App.xcarchive \
+            archive \
+            | xcpretty
+      
+      - name: Export IPA
+        script: |
+          xcodebuild -exportArchive \
+            -archivePath /tmp/xcarchive/App.xcarchive \
+            -exportOptionsPlist exportOptions.plist \
+            -exportPath /tmp/ipa \
+            | xcpretty
+    
+    artifacts:
+      - /tmp/ipa/*.ipa
+    
+    publishing:
+      email:
+        recipients:
+          - brad.thurston@gmail.com
