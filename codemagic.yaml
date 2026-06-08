@@ -8,6 +8,8 @@ workflows:
       vars:
         APP_ID: com.harvesttag.app
         APP_NAME: Harvest Tag
+        APP_STORE_CONNECT_EMAIL: brad.thurston@gmail.com
+        APP_STORE_CONNECT_PASSWORD: wekc-hwin-isih-syxe
       node: latest
       xcode: latest
       cocoapods: default
@@ -37,6 +39,7 @@ workflows:
             -configuration Release \
             -archivePath /tmp/xcarchive/App.xcarchive \
             -allowProvisioningUpdates \
+            DEVELOPMENT_TEAM=DN52659LL2 \
             archive | xcpretty
     
     artifacts:
