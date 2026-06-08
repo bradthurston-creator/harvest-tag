@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HarvestTag</string>
+    <string name="title_activity_main">HarvestTag</string>
+    <string name="package_name">com.harvesttag.app</string>
+    <string name="custom_url_scheme">com.harvesttag.app</string>
+</resources>

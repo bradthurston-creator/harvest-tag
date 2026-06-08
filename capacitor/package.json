@@ -1,0 +1,22 @@
+{
+  "name": "harvest-tag",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cap copy",
+    "sync": "cap sync",
+    "open:android": "cap open android",
+    "build:android": "cap sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.3.0",
+    "@capacitor/ios": "^8.3.4",
+    "@capgo/capacitor-nfc": "^8.0.28",
+    "@capgo/capacitor-speech-recognition": "^8.1.3"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.3.0",
+    "@capacitor/cli": "^8.3.0",
+    "typescript": "^6.0.3"
+  }
+}

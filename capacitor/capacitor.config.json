@@ -1,0 +1,9 @@
+{
+  "appId": "com.harvesttag.app",
+  "appName": "HarvestTag",
+  "webDir": "../app",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

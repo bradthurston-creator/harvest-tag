@@ -1,0 +1,15 @@
+node_modules/
+.gradle/
+build/
+*.apk
+*.aab
+*.ipa
+*.dSYM.zip
+*.o
+local.properties
+.capacitor/
+dist/
+.DS_Store
+*.log
+.env
+.env.local

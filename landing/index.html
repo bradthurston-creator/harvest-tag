@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harvest Tag — Tap your jar. Know your harvest.</title>
+<meta name="description" content="NFC jar labels for the home & garden. Write what's in your jar with a tap — or speak it.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    background:#f5f0ea;color:#2c2418;
+    -webkit-font-smoothing:antialiased;line-height:1.5;
+  }
+
+  .container{max-width:960px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1008px;margin:0 auto;
+  }
+  nav .logo{
+    font-family:'Playfair Display',serif;font-size:20px;font-weight:600;
+    color:#5a3e2b;display:flex;align-items:center;gap:8px;
+  }
+  nav .nav-links{display:flex;gap:24px;align-items:center}
+  nav .nav-links a{text-decoration:none;color:#7a6a5a;font-size:14px;font-weight:500;}
+  nav .nav-links a:hover{color:#5a3e2b;}
+  .btn-sm{padding:8px 16px;border-radius:8px;background:#5a3e2b;color:white!important;font-weight:600;}
+  .btn-sm:hover{background:#4a3322!important;}
+
+  /* Hero */
+  .hero{
+    text-align:center;padding:80px 24px 60px;
+    background:linear-gradient(180deg,#f5f0ea 0%,#ebe1d4 100%);
+  }
+  .hero h1{
+    font-family:'Playfair Display',serif;font-size:64px;font-weight:700;
+    color:#5a3e2b;line-height:1.1;margin-bottom:16px;
+  }
+  @media(max-width:600px){.hero h1{font-size:40px}}
+  .hero .tagline{font-size:20px;color:#7a6a5a;font-weight:300;margin-bottom:8px;}
+  .hero .sub{font-size:15px;color:#8a7a6a;margin-bottom:32px;}
+  .hero .btn-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-lg{
+    padding:16px 32px;border-radius:12px;font-weight:600;font-size:16px;
+    border:none;cursor:pointer;text-decoration:none;display:inline-flex;
+    align-items:center;gap:8px;transition:all 0.2s;
+  }
+  .btn-filled{background:#5a3e2b;color:white;}
+  .btn-filled:hover{background:#4a3322;}
+  .btn-outline{background:transparent;color:#5a3e2b;border:2px solid #5a3e2b;}
+  .btn-outline:hover{background:#5a3e2b;color:white;}
+
+  /* Demo / how it works */
+  .section{padding:60px 0;}
+  .section-alt{background:#ebe1d4;}
+  .section h2{
+    font-family:'Playfair Display',serif;font-size:36px;color:#5a3e2b;
+    text-align:center;margin-bottom:40px;
+  }
+  .steps{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
+  .step{
+    flex:1;min-width:200px;max-width:280px;text-align:center;
+    background:white;border-radius:16px;padding:32px 24px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.04);
+  }
+  .step .icon{font-size:48px;margin-bottom:12px;}
+  .step h3{font-size:18px;color:#5a3e2b;margin-bottom:8px;}
+  .step p{font-size:14px;color:#7a6a5a;}
+
+  /* Pricing */
+  .pricing-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+  .plan{
+    background:white;border-radius:16px;padding:32px 24px;width:260px;
+    text-align:center;box-shadow:0 4px 16px rgba(0,0,0,0.04);
+    position:relative;
+  }
+  .plan.featured{
+    border:2px solid #5a3e2b;transform:scale(1.03);
+  }
+  .plan .badge{
+    position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+    background:#cc8a5e;color:white;font-size:11px;font-weight:600;
+    padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;
+  }
+  .plan .qty{font-size:36px;font-weight:700;color:#5a3e2b;}
+  .plan .label{font-size:14px;color:#8a7a6a;margin:4px 0 16px;}
+  .plan .price{font-size:32px;font-weight:700;color:#cc8a5e;margin-bottom:20px;}
+  .plan .perks{list-style:none;font-size:14px;color:#5a3e2b;margin-bottom:24px;}
+  .plan .perks li{padding:6px 0;border-bottom:1px solid #f0ebe4;}
+  .plan .perks li:last-child{border:none;}
+  .plan .btn-plan{padding:12px 24px;border-radius:10px;background:#5a3e2b;color:white;
+    border:none;font-weight:600;cursor:pointer;width:100%;font-size:15px;}
+
+  /* Phone mockups */
+  .phone-row{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
+  .phone-mock{
+    width:260px;background:#1a1a1a;border-radius:36px;padding:10px;
+    box-shadow:0 12px 40px rgba(0,0,0,0.15);
+  }
+  .phone-mock .screen{
+    background:#f5f0ea;border-radius:26px;overflow:hidden;
+    line-height:0;
+  }
+  .phone-mock .screen img{width:100%;display:block;}
+  .phone-label{
+    font-size:12px;color:#7a6a5a;text-align:center;margin-top:8px;
+    font-weight:500;
+  }
+  .phone-row + .features-grid{margin-top:40px;}
+
+  /* Features */
+  .features-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:600px){.features-grid{grid-template-columns:1fr}}
+  .feature-card{
+    background:white;border-radius:12px;padding:24px;
+    display:flex;align-items:flex-start;gap:16px;
+  }
+  .feature-card .fc-icon{font-size:32px;}
+  .feature-card h3{font-size:16px;color:#5a3e2b;margin-bottom:4px;}
+  .feature-card p{font-size:14px;color:#7a6a5a;}
+
+  /* Footer */
+  footer{
+    text-align:center;padding:40px 24px;color:#8a7a6a;font-size:14px;
+    border-top:1px solid #ddd5c9;
+  }
+
+  /* Sticker showcase */
+  .sticker-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;}
+  .sticker-demo{
+    width:90px;height:90px;border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:white;font-size:10px;text-align:center;padding:8px;line-height:1.3;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  }
+  .sd1{background:#d4a373}.sd2{background:#7a9b76}.sd3{background:#cc8a5e}.sd4{background:#5c7a58}.sd5{background:#8f7255}
+  .sticker-demo .sd-icon{font-size:20px;margin-bottom:2px;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">🌾 Harvest Tag</div>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#features">Features</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Tap your jar.<br>Know your harvest.</h1>
+  <p class="tagline">NFC jar labels for the home & garden</p>
+  <p class="sub">Write what's in your jar with a tap — or just speak it.</p>
+  <div class="btn-group">
+    <a href="#pricing" class="btn-lg btn-filled">📦 Order Now</a>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="container">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="icon">🏷️</div>
+        <h3>1. Stick It</h3>
+        <p>Peel a Harvest Tag sticker onto any clean jar lid. Works with all standard mason jars.</p>
+      </div>
+      <div class="step">
+        <div class="icon">🎤</div>
+        <h3>2. Tag It</h3>
+        <p>Open the app. Speak or type what's inside — "Strawberry jam, June 2026." Tap your phone to the tag. Done.</p>
+      </div>
+      <div class="step">
+        <div class="icon">📱</div>
+        <h3>3. Tap It</h3>
+        <p>Tap any tagged jar with your phone. The contents pop right up in the app.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="features">
+  <div class="container">
+    <h2>See it in action</h2>
+    <div class="phone-row">
+      <div>
+        <div class="phone-label">✏️ Write — Speak or type jar contents</div>
+        <div class="phone-mock">
+          <div class="screen">
+            <img src="screen-write.png" alt="Harvest Tag Write tab">
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="phone-label">📖 Read — Tap your phone to any tag</div>
+        <div class="phone-mock">
+          <div class="screen">
+            <img src="screen-read.png" alt="Harvest Tag Read tab">
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="phone-label">📋 History — Searchable jar log</div>
+        <div class="phone-mock">
+          <div class="screen">
+            <img src="screen-history.png" alt="Harvest Tag History tab">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="fc-icon">🎤</div>
+        <div><h3>Voice Input</h3><p>Speak the jar contents — the app writes it automatically. No typing required.</p></div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📱</div>
+        <div><h3>Tap to Read</h3><p>Tap your phone to any tagged jar and the contents pop right up in the app.</p></div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">🔄</div>
+        <div><h3>Rewrite Ready</h3><p>Finished a jar? Tap the old tag and write the new contents. The chip can be rewritten thousands of times.</p></div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">🔌</div>
+        <div><h3>No Internet</h3><p>Works offline. The data lives on the sticker, not in the cloud.</p></div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">💧</div>
+        <div><h3>Everyday Tough</h3><p>Water-resistant for daily kitchen life. Handles splashes, humidity, and wipedowns on the jar lid.</p></div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📋</div>
+        <div><h3>Jar History</h3><p>The app keeps a searchable log of every jar you've tagged. Never wonder again.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="container">
+    <h2>Pricing</h2>
+    <div class="pricing-grid">
+      <div class="plan">
+        <div class="qty">10</div>
+        <div class="label">Starter Pack</div>
+        <div class="price">$15</div>
+        <ul class="perks">
+          <li>10 Harvest Tags</li>
+          <li>Rustic harvest-themed card</li>
+          <li>Harvest Tag app included</li>
+        </ul>
+        <button class="btn-plan" data-pack="starter">Buy Now</button>
+      </div>
+      <div class="plan featured">
+        <div class="badge">Best Value</div>
+        <div class="qty">30</div>
+        <div class="label">Garden Pack</div>
+        <div class="price">$22</div>
+        <ul class="perks">
+          <li>30 Harvest Tags</li>
+          <li>Rustic harvest-themed card</li>
+          <li>Harvest Tag app included</li>
+        </ul>
+        <button class="btn-plan" data-pack="garden">Buy Now</button>
+      </div>
+      <div class="plan">
+        <div class="qty">100</div>
+        <div class="label">Bumper Crop</div>
+        <div class="price">$40</div>
+        <ul class="perks">
+          <li>100 Harvest Tags</li>
+          <li>Rustic harvest-themed card</li>
+          <li>Harvest Tag app included</li>
+        </ul>
+        <button class="btn-plan" data-pack="bumper">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  🌾 Harvest Tag &middot; <a href="/faq" style="color:#7a6a5a">FAQ</a> &middot; harvesttag.com<br>
+  <span style="font-size:12px">Tap your jar. Know your harvest.</span>
+</footer>
+<script>
+document.querySelectorAll('.btn-plan[data-pack]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const pack = btn.dataset.pack;
+    btn.disabled = true;
+    btn.textContent = 'Opening checkout...';
+    try {
+      const res = await fetch('/api/checkout/' + pack, { method: 'POST' });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+      else { alert('Something went wrong. Please try again.'); btn.textContent = 'Buy Now'; btn.disabled = false; }
+    } catch(e) {
+      alert('Could not connect to checkout. Please try again.');
+      btn.textContent = 'Buy Now';
+      btn.disabled = false;
+    }
+  });
+});
+</script>
+</body>
+</html>

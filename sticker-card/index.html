@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harvest Tag — Sticker Card (Printable)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: 10cm 15cm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f0ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .card {
+    width: 370px;
+    height: 555px;
+    background: linear-gradient(160deg, #faf6f0 0%, #f0e8dc 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    padding: 28px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ddd5c9;
+  }
+  /* Decorative top accent */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #d4a373, #7a9b76, #cc8a5e, #5c7a58);
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .header .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: #5a3e2b;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .header .logo-icon { font-size: 24px; }
+  .header .tag {
+    font-size: 8px;
+    color: #8a7a6a;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 9px;
+    color: #a09080;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .sticker-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 12px;
+    padding: 0 4px;
+    flex: 1;
+    align-content: center;
+  }
+
+  .sticker {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 8px;
+    text-align: center;
+    line-height: 1.2;
+    padding: 6px;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .sticker .em {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+  .sticker .lbl {
+    font-weight: 500;
+  }
+  .sticker .dt {
+    font-size: 7px;
+    opacity: 0.75;
+    margin-top: 1px;
+  }
+
+  /* Sticker colors - alternating warm/sage */
+  .s1 { background: linear-gradient(135deg, #d4a373, #c89465); }
+  .s2 { background: linear-gradient(135deg, #7a9b76, #6b8a67); }
+  .s3 { background: linear-gradient(135deg, #cc8a5e, #bf7d52); }
+  .s4 { background: linear-gradient(135deg, #5c7a58, #4e6a4a); }
+  .s5 { background: linear-gradient(135deg, #8f7255, #7e6450); }
+  .s6 { background: linear-gradient(135deg, #a0806a, #8f7255); }
+
+  .sticker.blank {
+    background: #e8e0d6;
+    color: #8a7a6a;
+    border: 2px dashed #c0b4a4;
+  }
+  .sticker.blank .em { font-size: 20px; }
+
+  .bottom {
+    text-align: center;
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd5c9;
+  }
+  .bottom .app-link {
+    font-size: 8px;
+    color: #8a7a6a;
+    letter-spacing: 1px;
+  }
+  .bottom .app-link strong { color: #5a3e2b; }
+  .bottom .nfc-icon-sm {
+    display: inline-block;
+    font-size: 10px;
+    margin: 0 2px;
+  }
+
+  .print-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 28px;
+    background: #5a3e2b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .print-btn:hover { background: #4a3322; }
+  @media print {
+    .print-btn { display: none; }
+    body { padding: 0; background: white; }
+    .card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+  }
+
+  .note {
+    text-align: center;
+    font-size: 9px;
+    color: #bbb0a0;
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print Card</button>
+
+<div class="card">
+  <div class="header">
+    <span class="logo-icon">🌾</span>
+    <span class="logo">Harvest Tag</span>
+    <div class="tag">NFC Jar Labels · Tap to Read</div>
+  </div>
+  <div class="subtitle">Peel · Stick · Tap</div>
+
+  <div class="sticker-grid">
+    <div class="sticker s1"><div class="em">🍓</div><div class="lbl">Jam</div><div class="dt">Jun 2026</div></div>
+    <div class="sticker s2"><div class="em">🥒</div><div class="lbl">Pickles</div><div class="dt">Jun 2026</div></div>
+    <div class="sticker s3"><div class="em">🍅</div><div class="lbl">Sauce</div><div class="dt">Jul 2026</div></div>
+    <div class="sticker blank"><div class="em">✏️</div><div class="lbl">Write it</div></div>
+    <div class="sticker blank"><div class="em">✏️</div><div class="lbl">Write it</div></div>
+    <div class="sticker blank"><div class="em">✏️</div><div class="lbl">Write it</div></div>
+  </div>
+
+  <div class="bottom">
+    <div class="app-link">
+      <span class="nfc-icon-sm">📱</span>
+      Speak or type contents &nbsp;·&nbsp; Tap to write &nbsp;·&nbsp; Works offline
+    </div>
+    <div class="app-link" style="margin-top:3px">
+      Get the app: <strong>harvesttag.com</strong>
+    </div>
+  </div>
+  <div class="note">
+    Compatible with all NFC-enabled phones · Tags are rewritable · NFC NTAG216
+  </div>
+</div>
+
+</body>
+</html>
