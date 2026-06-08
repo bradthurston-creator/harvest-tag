@@ -41,9 +41,20 @@ workflows:
             -allowProvisioningUpdates \
             DEVELOPMENT_TEAM=DN52659LL2 \
             archive | xcpretty
+      
+      - name: Export IPA
+        script: |
+          mkdir -p /tmp/ipa
+          xcodebuild -exportArchive \
+            -archivePath /tmp/xcarchive/App.xcarchive \
+            -exportPath /tmp/ipa \
+            -exportOptionsPlist capacitor/ios/exportOptions.plist \
+            -allowProvisioningUpdates \
+            | xcpretty
     
     artifacts:
       - /tmp/xcarchive/*.xcarchive
+      - /tmp/ipa/*.ipa
     
     publishing:
       email:
