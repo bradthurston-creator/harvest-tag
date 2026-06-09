@@ -41,7 +41,7 @@ workflows:
             -archivePath /tmp/xcarchive/App.xcarchive \
             -allowProvisioningUpdates \
             DEVELOPMENT_TEAM=DN52659LL2 \
-            archive | xcpretty
+            archive
       
       - name: Export IPA
         script: |
@@ -50,8 +50,7 @@ workflows:
             -archivePath /tmp/xcarchive/App.xcarchive \
             -exportPath /tmp/ipa \
             -exportOptionsPlist capacitor/ios/exportOptions.plist \
-            -allowProvisioningUpdates \
-            | xcpretty
+            -allowProvisioningUpdates
     
     artifacts:
       - /tmp/xcarchive/*.xcarchive
