@@ -3,10 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>method</key>
-    <string>app-store</string>
+    <string>app-store-connect</string>
     <key>teamID</key>
     <string>DN52659LL2</string>
     <key>compileBitcode</key>
     <false/>
+    <key>provisioningProfiles</key>
+    <dict>
+        <key>com.harvesttag.app</key>
+        <string>Harvest Tag App Store</string>
+    </dict>
 </dict>
 </plist>
