@@ -30,7 +30,7 @@ workflows:
       - name: Set up keychain and code signing
         script: |
           keychain initialize
-          echo "$CERTIFICATE_PRIVATE_KEY" > /tmp/cert.key
+          echo "$CERTIFICATE_PRIVATE_KEY" | base64 -d > /tmp/cert.key
           echo "$APP_STORE_CONNECT_PRIVATE_KEY" | base64 -d > /tmp/asc.p8
           app-store-connect fetch-signing-files \
             $APP_ID \
