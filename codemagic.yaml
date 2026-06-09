@@ -31,11 +31,6 @@ workflows:
           cd capacitor/ios/App
           /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $APP_ID" App/Info.plist
       
-      - name: Install provisioning profile
-        script: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp capacitor/ios/App/Harvest_Tag_App_Store.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-      
       - name: Build iOS app
         script: |
           cd capacitor/ios/App
@@ -44,6 +39,7 @@ workflows:
             -sdk iphoneos \
             -configuration Release \
             -archivePath /tmp/xcarchive/App.xcarchive \
+            -allowProvisioningUpdates \
             DEVELOPMENT_TEAM=DN52659LL2 \
             archive
       
@@ -53,7 +49,8 @@ workflows:
           xcodebuild -exportArchive \
             -archivePath /tmp/xcarchive/App.xcarchive \
             -exportPath /tmp/ipa \
-            -exportOptionsPlist capacitor/ios/exportOptions.plist
+            -exportOptionsPlist capacitor/ios/exportOptions.plist \
+            -allowProvisioningUpdates
     
     artifacts:
       - /tmp/xcarchive/*.xcarchive
