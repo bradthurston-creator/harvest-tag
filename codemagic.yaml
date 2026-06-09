@@ -30,10 +30,15 @@ workflows:
       - name: Set up keychain and code signing
         script: |
           keychain initialize
+          echo "$CERTIFICATE_PRIVATE_KEY" > /tmp/cert.key
+          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > /tmp/asc.p8
           app-store-connect fetch-signing-files \
             $APP_ID \
             --type IOS_APP_STORE \
-            --certificate-key @env:CERTIFICATE_PRIVATE_KEY \
+            --issuer-id $APP_STORE_CONNECT_ISSUER_ID \
+            --key-id $APP_STORE_CONNECT_KEY_IDENTIFIER \
+            --private-key @file:/tmp/asc.p8 \
+            --certificate-key @file:/tmp/cert.key \
             --create
           keychain add-certificates
           xcode-project use-profiles
