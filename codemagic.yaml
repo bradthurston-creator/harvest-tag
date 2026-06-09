@@ -12,6 +12,9 @@ workflows:
       xcode: latest
       cocoapods: default
     
+    integrations:
+      app_store_connect: Codemagic
+    
     scripts:
       - name: Install npm dependencies
         script: |
