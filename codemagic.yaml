@@ -7,13 +7,12 @@ workflows:
     environment:
       vars:
         APP_ID: com.harvesttag.app
-        APP_NAME: Harvest Tag
+        APP_STORE_CONNECT_KEY_IDENTIFIER: 2NBS93SRAY
+        APP_STORE_CONNECT_ISSUER_ID: fa233451-1f0a-4677-baac-21185e4cb1ec
+        DEVELOPMENT_TEAM: DN52659LL2
       node: latest
       xcode: latest
       cocoapods: default
-    
-    integrations:
-      app_store_connect: Codemagic
     
     scripts:
       - name: Install npm dependencies
@@ -26,21 +25,26 @@ workflows:
           cd capacitor
           npx cap sync ios
       
-      - name: Set app bundle identifier
+      - name: Set up keychain and code signing
         script: |
-          cd capacitor/ios/App
-          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $APP_ID" App/Info.plist
+          keychain initialize
+          app-store-connect fetch-signing-files \
+            $APP_ID \
+            --type IOS_APP_STORE \
+            --certificate-key @env:CERTIFICATE_PRIVATE_KEY \
+            --create
+          keychain add-certificates
+          xcode-project use-profiles
       
       - name: Build iOS app
         script: |
           cd capacitor/ios/App
+          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $APP_ID" App/Info.plist
           xcodebuild -project App.xcodeproj \
             -scheme App \
             -sdk iphoneos \
             -configuration Release \
             -archivePath /tmp/xcarchive/App.xcarchive \
-            -allowProvisioningUpdates \
-            DEVELOPMENT_TEAM=DN52659LL2 \
             archive
       
       - name: Export IPA
@@ -49,8 +53,7 @@ workflows:
           xcodebuild -exportArchive \
             -archivePath /tmp/xcarchive/App.xcarchive \
             -exportPath /tmp/ipa \
-            -exportOptionsPlist capacitor/ios/exportOptions.plist \
-            -allowProvisioningUpdates
+            -exportOptionsPlist capacitor/ios/exportOptions.plist
     
     artifacts:
       - /tmp/xcarchive/*.xcarchive
@@ -58,7 +61,9 @@ workflows:
     
     publishing:
       app_store_connect:
-        auth: integration
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
         submit_to_testflight: true
         submit_to_app_store: false
       email:
