@@ -56,8 +56,7 @@ workflows:
     
     publishing:
       app_store_connect:
-        auth: API_KEY
-        api_key_name: Codemagic
+        auth: integration
         submit_to_testflight: true
         submit_to_app_store: false
       email:
