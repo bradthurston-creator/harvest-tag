@@ -52,6 +52,7 @@ workflows:
             -sdk iphoneos \
             -configuration Release \
             -archivePath /tmp/xcarchive/App.xcarchive \
+            -allowProvisioningUpdates \
             archive
       
       - name: Export IPA
@@ -60,7 +61,8 @@ workflows:
           xcodebuild -exportArchive \
             -archivePath /tmp/xcarchive/App.xcarchive \
             -exportPath /tmp/ipa \
-            -exportOptionsPlist capacitor/ios/exportOptions.plist
+            -exportOptionsPlist capacitor/ios/exportOptions.plist \
+            -allowProvisioningUpdates
     
     artifacts:
       - /tmp/xcarchive/*.xcarchive
