@@ -10,6 +10,8 @@ workflows:
         APP_STORE_CONNECT_KEY_IDENTIFIER: 2NBS93SRAY
         APP_STORE_CONNECT_ISSUER_ID: fa233451-1f0a-4677-baac-21185e4cb1ec
         DEVELOPMENT_TEAM: DN52659LL2
+      groups:
+        - apple_credentials
       node: latest
       xcode: latest
       cocoapods: default
