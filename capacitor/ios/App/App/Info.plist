@@ -51,5 +51,7 @@
 		<string>Harvest Tag uses the microphone to capture voice input for naming and describing your jar contents hands-free.</string>
 		<key>NSSpeechRecognitionUsageDescription</key>
 		<string>Speech recognition lets you quickly log jar contents by speaking instead of typing.</string>
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false/>
 	</dict>
 </plist>
